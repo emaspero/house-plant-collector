@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Plant Details</h1>
+
+<div class="row">
+  <div class="card">
+    <div class="col s12 m6 l6 card-image">
+      <img src="{{plant.detailPicture}}" alt="" />
+    </div>
+    <div class="col s12 m6 l6 card-content">
+      <span class="card-title">{{plant.name}}</span>
+      <span>{{plant.description}}</span>
+      <div class="plant-info">
+        <p class="plant-details-p">Light: {{plant.light}}</p>
+        <p class="plant-details-p">Water: {{plant.water}}</p>
+        <p class="plant-details-p">Toxic: {{plant.toxic}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
