@@ -14,10 +14,71 @@
         <p class="plant-details-p">Light: {{plant.light}}</p>
         <p class="plant-details-p">Water: {{plant.water}}</p>
         <p class="plant-details-p">Toxic: {{plant.toxic}}</p>
+      </div>
 
+      <div>
+        <a href="{% url 'plants_update' plant.id %}">Edit</a>
+        <a href="{% url 'plants_delete' plant.id %}">Delete</a>
       </div>
     </div>
   </div>
 </div>
+
+<div>
+  <form action="{% url 'add_watering' plant.id %}" method="post">
+    {% csrf_token %} {{ watering_form.as_p }}
+    <input type="submit" value="Log Watering" class="btn" />
+  </form>
+
+  {% if plant.watered_today >= 2 %}
+  <div class="card-panel red-text center-align">
+    {{plant.name}} was over-watered.
+  </div>
+  {% elif plant.watered_today == 1 %}
+  <div class="card-panel teal-text center-align">
+    {{plant.name}} has been watered for today.
+  </div>
+  {% else %}
+  <div class="card-panel red-text center-align">
+    {{plant.name}} was not watered.
+  </div>
+  {% endif %}
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Date:</th>
+        <th>Time of the Day:</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for watering in plant.watering_set.all %}
+      <tr>
+        <td>{{ watering.date }}</td>
+        <td>{{ watering.get_timeOfDay_display }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+  var dateElement = document.getElementById('id_date');
+  M.Datepicker.init(dateElement, {
+      format: 'yyyy-mm-dd',
+      defaultDate: new Date(),
+      setDefaultDate: true,
+      autoClose: true
+  });
+
+  var timeOfDayElement = document.getElementById('id_timeOfDay');
+  M.FormSelect.init(timeOfDayElement);
+
+  var toxicityElement = document.getElementById('id_toxic');
+  M.FormSelect.init(toxicityElement);
+
+</script>
 
 {% endblock %}
