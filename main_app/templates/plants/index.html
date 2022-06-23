@@ -1,7 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Plants List</h1>
-
+<div class="row">
+  <h1 class="col offset-s4 offset-m4 offset-l4">Plants List</h1>
+</div>
+<hr>
 <div class="row">
   {% for plant in plants %}
 
@@ -12,9 +14,11 @@
       </div>
 
       <div class="card-content">
+        <div class="right-align right">
         <span class="card-title">{{plant.name}}</span>
-        <p><a href="{% url 'plantsDetail' plant.id %}">Details</a></p>
+        <p><a href="{% url 'plantsDetail' plant.id %}" class="btn" style="background-color: #4a5846">Details</a></p>
       </div>
+    </div>
     </div>
 
   </div>

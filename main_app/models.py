@@ -36,7 +36,7 @@ class Plant(models.Model):
     description = models.TextField(max_length=500)
     indexPicture = models.URLField(max_length=1000, null=True)
     detailPicture = models.URLField(max_length=1000, null=True)
-    pots = models.ManyToManyField(Pot)
+    pots = models.ManyToManyField(Pot, blank=True)
 
     def get_absolute_url(self):
         return reverse('plantsDetail', kwargs = {'plant_id': self.id})

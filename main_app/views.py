@@ -64,8 +64,8 @@ class PotDelete(DeleteView):
 
 def assoc_pot(request, plant_id, pot_id):
     Plant.objects.get(id=plant_id).pots.add(pot_id)
-    return redirect('plantDetail', plant_id=plant_id)
+    return redirect('plantsDetail', plant_id=plant_id)
 
 def unassoc_pot(request, plant_id, pot_id):
     Plant.objects.get(id=plant_id).pots.remove(pot_id)
-    return redirect('plantDetail', plant_id=plant_id)
+    return redirect('plantsDetail', plant_id=plant_id)
