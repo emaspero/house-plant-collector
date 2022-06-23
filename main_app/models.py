@@ -15,6 +15,19 @@ TIMESOFDAY = (
 )
 
 # Create your models here.
+class Pot(models.Model):
+    name = models.CharField(max_length=50, null=True)
+    size =  models.IntegerField(null=True)
+    color =  models.CharField(max_length=30, null=True)
+    material =  models.CharField(max_length=30, null=True)
+    price =  models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('pots_detail', kwargs = {'pk': self.id})
+
 class Plant(models.Model):
     name = models.CharField(max_length=100)
     light = models.CharField(max_length=100)
@@ -23,6 +36,7 @@ class Plant(models.Model):
     description = models.TextField(max_length=500)
     indexPicture = models.URLField(max_length=1000, null=True)
     detailPicture = models.URLField(max_length=1000, null=True)
+    pots = models.ManyToManyField(Pot)
 
     def get_absolute_url(self):
         return reverse('plantsDetail', kwargs = {'plant_id': self.id})

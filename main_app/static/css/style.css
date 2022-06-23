@@ -2,10 +2,13 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Tenor Sans', sans-serif; */
 }
 
 nav {
     background-color: #838f77;
+    /* font-family: 'Raleway', sans-serif; */
 }
 
 .page-footer {
