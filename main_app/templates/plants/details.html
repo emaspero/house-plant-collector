@@ -3,12 +3,14 @@
 <div class="row">
   <h1 class="col offset-s4 offset-m4 offset-l4">Plant Details</h1>
 </div>
-<hr>
+<hr />
+
 <div class="row">
   <div class="card">
     <div class="col s12 m6 l6 card-image">
       <img src="{{plant.detailPicture}}" alt="" />
     </div>
+    
     <div class="col s12 m6 l6 card-content">
       <span class="card-title">{{plant.name}}</span>
       <span>{{plant.description}}</span>
@@ -23,115 +25,130 @@
       </div>
 
       <div class="right">
-        <br>
-        <a href="{% url 'plants_update' plant.id %}" class="btn" style="background-color: #4a5846">Edit</a>
-        <a href="{% url 'plants_delete' plant.id %}" class="btn" style="background-color: #4a5846">Delete</a>
+        <br />
+        <a
+          href="{% url 'plants_update' plant.id %}"
+          class="btn"
+          style="background-color: #4a5846"
+          >Edit</a
+        >
+        <a
+          href="{% url 'plants_delete' plant.id %}"
+          class="btn"
+          style="background-color: #4a5846"
+          >Delete</a
+        >
       </div>
     </div>
   </div>
 </div>
-<hr style="border-style: double">
+<hr style="border-style: double" />
 
 <a name="pots">
-
   <div class="row black-text">
     <div class="col s12 m6 l6">
-        <h5> {{ plant.name }}'s Pots </h5>
+      <h5>{{ plant.name }}'s Pots</h5>
 
-        {% if plant.pots.count %}
+      {% if plant.pots.count %} {% for pot in plant.pots.all %}
 
-        {% for pot in plant.pots.all %}
-
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">
-                {{ pot.name }} 
-                </span>
-                <p>A {{ pot.size }}cm {{ pot.color }} plant pot, made of {{ pot.material }}, which costs £{{ pot.price }}. </p>
-            </div>
-
-            <div class="card-action">
-                <form action="{% url 'unassoc_pot' plant.id pot.id %}#pots" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn" style="background-color: #4a5846">Remove</button>
-                </form>
-            </div>
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"> {{ pot.name }} </span>
+          <p>
+            A {{ pot.size }}cm {{ pot.color }} plant pot, made of {{
+            pot.material }}, which costs £{{ pot.price }}.
+          </p>
         </div>
 
-        {% endfor %}
+        <div class="card-action">
+          <form
+            action="{% url 'unassoc_pot' plant.id pot.id %}#pots"
+            method="post"
+          >
+            {% csrf_token %}
+            <button type="submit" class="btn" style="background-color: #4a5846">
+              Remove
+            </button>
+          </form>
+        </div>
+      </div>
 
-        {% else %}
+      {% endfor %} {% else %}
 
-        <h6>No Pots</h6>
+      <h6>No Pots</h6>
 
-        {% endif %}
-
+      {% endif %}
     </div>
 
     <div class="col s12 m6 l6">
-        <h5>Available Pots</h5>
+      <h5>Available Pots</h5>
 
-        {% if pots.count %}
-
-        {% for pot in pots.all %}
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">
-                  {{ pot.name }} 
-                </span>
-                <p>A {{ pot.size }}cm {{ pot.color }} plant pot, made of {{ pot.material }}, which costs £{{ pot.price }}. </p>
-            </div>
-        
+      {% if pots.count %} {% for pot in pots.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"> {{ pot.name }} </span>
+          <p>
+            A {{ pot.size }}cm {{ pot.color }} plant pot, made of {{
+            pot.material }}, which costs £{{ pot.price }}.
+          </p>
+        </div>
 
         <div class="card-action">
-            <form action="{% url 'assoc_pot' plant.id pot.id %}#pots" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn" style="background-color: #4a5846">Add</button>
-            </form>
+          <form
+            action="{% url 'assoc_pot' plant.id pot.id %}#pots"
+            method="post"
+          >
+            {% csrf_token %}
+            <button type="submit" class="btn" style="background-color: #4a5846">
+              Add
+            </button>
+          </form>
         </div>
-        </div>
+      </div>
 
-        {% endfor %}
+      {% endfor %} {% else %}
 
-        {% else %}
+      <h6>{{ plant.name }} already has all of the suitable plant pots.</h6>
 
-        <h6> {{ plant.name }} already has all of the suitable plant pots. </h6>
-
-        {% endif %}
+      {% endif %}
     </div>
-
-</div>
-
+  </div>
 </a>
 
-<hr>
+<hr />
 
 <div class="row">
-  <form action="{% url 'add_watering' plant.id %}" method="post" class="col s12 m6 l6">
+  <form
+    action="{% url 'add_watering' plant.id %}"
+    method="post"
+    class="col s12 m6 l6"
+  >
     {% csrf_token %} {{ watering_form.as_p }}
-  <input type="submit" value="Log Watering" class="btn right" style="background-color: #4a5846" />
+    <input
+      type="submit"
+      value="Log Watering"
+      class="btn right"
+      style="background-color: #4a5846"
+    />
   </form>
-<div class="col s12 m6 l6">
-
-  {% if plant.watered_today >= 2 %}
-  <div class="card-panel red-text center-align">
-    {{plant.name}} was over-watered.
+  <div class="col s12 m6 l6">
+    {% if plant.watered_today >= 2 %}
+    <div class="card-panel red-text center-align">
+      {{plant.name}} was over-watered.
+    </div>
+    {% elif plant.watered_today == 1 %}
+    <div class="card-panel teal-text center-align">
+      {{plant.name}} has been watered for today.
+    </div>
+    {% else %}
+    <div class="card-panel red-text center-align">
+      {{plant.name}} was not watered.
+    </div>
+    {% endif %}
   </div>
-  {% elif plant.watered_today == 1 %}
-  <div class="card-panel teal-text center-align">
-    {{plant.name}} has been watered for today.
-  </div>
-  {% else %}
-  <div class="card-panel red-text center-align">
-    {{plant.name}} was not watered.
-  </div>
-  {% endif %}
-
 </div>
-</div>
-<hr style="border-style: double">
+<hr style="border-style: double" />
 <div class="row">
-
   <table class="striped">
     <thead>
       <tr>
@@ -149,26 +166,24 @@
       {% endfor %}
     </tbody>
   </table>
-  <hr>
-  <br>
+  <hr />
+  <br />
 </div>
 
 <script>
-
-  var dateElement = document.getElementById('id_date');
+  var dateElement = document.getElementById("id_date");
   M.Datepicker.init(dateElement, {
-      format: 'yyyy-mm-dd',
-      defaultDate: new Date(),
-      setDefaultDate: true,
-      autoClose: true
+    format: "yyyy-mm-dd",
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
   });
 
-  var timeOfDayElement = document.getElementById('id_timeOfDay');
+  var timeOfDayElement = document.getElementById("id_timeOfDay");
   M.FormSelect.init(timeOfDayElement);
 
-  var toxicityElement = document.getElementById('id_toxic');
+  var toxicityElement = document.getElementById("id_toxic");
   M.FormSelect.init(toxicityElement);
-
 </script>
 
 {% endblock %}

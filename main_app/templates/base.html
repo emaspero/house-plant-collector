@@ -22,7 +22,7 @@
         <div class="nav-wrapper">
           <ul>
             <li>
-              <a href="{% url 'home' %}" class="left brand-logo"> &nbsp; HousePlantCollector</a>
+              <a href="{% url 'home' %}" class="left brand-logo" style="font-family: Times New Roman"> &nbsp; House-Plant-Collector</a>
             </li>
           </ul>
           <ul class="right">
@@ -36,7 +36,7 @@
             <li><a href="{% url 'pots_index' %}">Plant Pots</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
 
-            Hi {{ user.username }} &nbsp;
+            <!-- Hi {{ user.username }} &nbsp; -->
 
             {% else %}
             <li><a href="{% url 'signup' %}">Signup</a></li>
