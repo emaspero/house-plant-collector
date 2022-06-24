@@ -27,10 +27,23 @@
           </ul>
           <ul class="right">
             <li><a href="{% url 'about' %}">About</a></li>
+
+            {% if user.is_authenticated %}
+
             <li><a href="{% url 'plants_create' %}">Add a Plant</a></li>
             <li><a href="{% url 'plantsIndex' %}">Plants</a></li>
             <li><a href="{% url 'pots_create' %}">Add a Plant Pot</a></li>
             <li><a href="{% url 'pots_index' %}">Plant Pots</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            Hi {{ user.username }} &nbsp;
+
+            {% else %}
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+
+            {% endif %}
+
           </ul>
         </div>
       </nav>
