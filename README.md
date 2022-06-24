@@ -3,11 +3,16 @@
 # House Plant Collector Project/Deliverable
 
 ## Overview
+During Week 7 and Week 8 of General Assembly's Software Engineering Immersive course I started learning about Python, Relational Databases, SQL and, subsequently, about Django.  Step by step the instructor covered the following topics: 
+- Control flow in Python
+- Python functions, containers, classes and decorators
+- SQL and Relational Data modeling
+- Django urls, views, templates, models, class views, one to many/many to many models and authentication
+
+The result of these two weeks is this House Plant Collector Project. 
+
 ![Plants Index Page](/main_app/static/images/Plants%20Index.png)
 ![Plant Detail Page](/main_app/static/images/Plant%20Detail.png)
-
-
-### Requirements
 
 ### Technologies Used
 - Git/GitHub
@@ -19,8 +24,8 @@
 - Python
 - Django
 
-### Process
-
 ### Challenges
+On of the biggest challenges for me was trying to style the pages by using Materialize, I did not find it particularly flexible and I ended up keeping the styling very minimal.
 
 ### Features to be added in the future
+I would like to populate this Project with a lot more content, starting from the actual styling of the Homepage and of the About section which I did overlook.
