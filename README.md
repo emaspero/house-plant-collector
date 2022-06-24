@@ -24,6 +24,9 @@ The result of these two weeks is this House Plant Collector Project.
 - Python
 - Django
 
+### Features
+This website allows you, not only to create a new record for Plants and Plant Pots, but it also allows you to keep track of which Plant Pots have been assigned to which Plant and to keep track of how many times the Plant has been watered. If it's watered more than once a day, the user will be prompted with a message stating, in fact, that the Plant was over-watered. The website only displays to a user the plants that have been created by the above-mentioned. 
+
 ### Challenges
 On of the biggest challenges for me was trying to style the pages by using Materialize, I did not find it particularly flexible and I ended up keeping the styling very minimal.
 
